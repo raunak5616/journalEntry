@@ -2,7 +2,6 @@ package com.restcompany.restdev.service;
 
 import com.restcompany.restdev.entity.Entry;
 import com.restcompany.restdev.repository.JournalRepository;
-import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
