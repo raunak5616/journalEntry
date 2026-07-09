@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
     @Autowired
     private UserRepository userRepository;
@@ -29,6 +29,9 @@ public class UserController {
     }
     @PostMapping
     public ResponseEntity<?> save(@RequestBody User user){
+        System.out.println("Inside save()");
+        System.out.println(user);
+
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
