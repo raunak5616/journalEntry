@@ -5,6 +5,8 @@ import com.restcompany.restdev.repository.UserRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,11 +29,10 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+    private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @PostMapping
     public ResponseEntity<?> save(@RequestBody User user){
-        System.out.println("Inside save()");
-        System.out.println(user);
-
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return ResponseEntity.ok().build();
     }
