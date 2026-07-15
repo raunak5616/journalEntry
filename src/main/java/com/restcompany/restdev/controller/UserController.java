@@ -22,6 +22,7 @@ public class UserController {
     public List<User> findAll(){
         return userRepository.findAll();
     }
+
     @GetMapping("/{id}")
     public ResponseEntity<?> findById(@PathVariable ObjectId id) {
 
@@ -29,6 +30,7 @@ public class UserController {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
     private PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     @PostMapping
     public ResponseEntity<?> save(@RequestBody User user){
